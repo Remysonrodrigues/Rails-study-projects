@@ -1,4 +1,3 @@
-
 <table class="table table-bordered table-hover">
   <thead>
     <tr>
@@ -18,29 +17,6 @@
       <td><%= produto.quantidade %></td>
       <td><%= button_to "Remover", produto, method: :delete, class:"btn btn-danger", 
             data: { confirm: "Tem certeza que deseja remover o produto #{produto.nome}?" }%></td>
-    </tr>        
-  <% end %>
-  </tbody>
-</table>
-<div class="alert alert-success" role="alert">
-  <h4 class="alert-heading">Produto com desconto</h4>
-</div>
-<table class="table table-bordered table-hover">
-  <thead>
-    <tr>
-      <td>Nome</td>
-      <td>Descrição</td>
-      <td>Preço</td>
-      <td>Quantidade</td>
-    </tr>
-  </thead>
-  <tbody>
-  <% @produto_com_desconto.each do |produto| %>
-    <tr>
-      <td><%= produto.nome %></td>
-      <td><%= produto.descricao %></td>
-      <td><%= produto.preco %></td>
-      <td><%= produto.quantidade %></td>
     </tr>        
   <% end %>
   </tbody>
