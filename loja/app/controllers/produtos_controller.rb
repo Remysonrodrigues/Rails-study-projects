@@ -5,10 +5,19 @@ class ProdutosController < ApplicationController
     @produto_com_desconto = Produto.order(:preco).limit 1
   end
 
+  def new
+    @produto = Produto.new
+  end
+  
   def create
-    produto = params.require(:produto).permit(:nome, :descricao, :preco, :quantidade)
-    Produto.create produto
-    redirect_to root_url # Retorna para pagina principal
+    valores = params.require(:produto).permit(:nome, :descricao, :preco, :quantidade)
+    @produto = Produto.new valores
+    if @produto.save
+      flash[:notice] = "Produto salvo com sucesso!"
+      redirect_to root_url # Retorna para pagina principal
+    else
+      render :new # Renderiza a pagina atual
+    end
   end
   
   def destroy
