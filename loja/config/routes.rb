@@ -4,6 +4,6 @@ Rails.application.routes.draw do
   #post "produtos", to: "produtos#create"
   #get "produtos/new", to: "produtos#new"
   get "produtos/busca", to: "produtos#busca", as: :busca_produto
-  resources :produtos, only: [:new, :create, :destroy]
+  resources :produtos, only: [:new, :create, :destroy, :edit, :update]
   root to: "produtos#index"
 end
