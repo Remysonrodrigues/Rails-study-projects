@@ -6,6 +6,7 @@ ruby '2.6.6'
 gem 'rack-cors' # Configura o cors da aplicação
 gem 'rack-attack' # Protege as requisições da api
 gem 'devise' # Autenticação
+gem 'simple_token_authentication', '~> 1.0' # Fazer login atraves de token
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
