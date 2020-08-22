@@ -9,6 +9,7 @@ default: &default
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   Host: localhost
+  port: 5432
   username: postgres 
   password: remyson
   database: myartecles
