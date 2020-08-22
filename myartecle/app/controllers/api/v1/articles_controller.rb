@@ -11,7 +11,23 @@ module Api
         article = Article.find(params[:id])
         render json: { status: 'SUCCESS', message: 'Loaded article', data: article }, status: :ok
       end
+      # Criar um novo artigo
+      def create
+        article = Article.new(article_params)
+        if article.save
+          render json: { status: 'SUCCESS', message: 'Saved article', data: article }, status: :ok
+        else
+          render json: { status: 'ERROR', message: 'Articles no saved', data: article.erros }, status: :unprocessable_entity
+        end
+        
+      end
       
+      private
+        # Parametros aceitos
+        def article_params
+          params.permit(:title, :body)
+        end
+        
     end
   end
 end
