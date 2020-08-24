@@ -23,7 +23,7 @@ RSpec.describe "Tasks API", type: :request do
 
   # Conjunto de testes para GET /tasks/:id
   describe 'GET /tasks/:id' do
-    before { get "/tasks/#{todo_id}" }
+    before { get "/tasks/#{task_id}" }
 
     context 'quando o registro existe' do
       it 'returns a tasks' do
