@@ -8,6 +8,8 @@ require 'rspec/rails'
 # requer limpador de banco de dados no nível superior
 require 'database_cleaner'
 
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+
 # configure os matchers do shoulda para usar rspec como a estrutura de teste
 # e bibliotecas de matcher completas para trilhos
 Shoulda::Matchers.configure do |config|
@@ -34,6 +36,9 @@ RSpec.configure do |config|
 
   # add `FactoryBot` methods
   config.include FactoryBot::Syntax::Methods  
+  # add configuração JSON
+  config.include RequestSpecHelper, type: :request
+
   # comece truncando todas as tabelas, mas depois use a estratégia de transação mais rápida no resto do tempo.
   config.before(:suite) do
     DatabaseCleaner.clean_with(:truncation)
