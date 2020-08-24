@@ -30,6 +30,8 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Estrutura de teste
   gem 'rspec-rails'
+  # Biblioteca para gerar dados falsos
+  gem 'faker'
 end
 
 group :test do

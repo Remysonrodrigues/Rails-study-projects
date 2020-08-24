@@ -29,7 +29,7 @@ RSpec.describe "Items API", type: :request do
       end
 
       it 'retorna uma mensagem não encontrada' do
-        expect(response.body).to match(/Couldn't find task/)
+        expect(response.body).to match(/Couldn't find Task/)
       end
     end
   end
