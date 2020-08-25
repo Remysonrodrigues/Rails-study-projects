@@ -2,14 +2,16 @@ require 'rails_helper'
 
 RSpec.describe "Items API", type: :request do
   # Inicialize os dados de teste
+  let(:user) { create(:user) }
   let!(:task) { create(:task) }
   let!(:items) { create_list(:item, 20, task_id: task.id) }
   let(:task_id) { task.id }
   let(:id) { items.first.id }
+  let(:headers) { valid_headers }
 
   # Conjunto de testes para GET /tasks/:task_id/items
   describe 'GET /tasks/:task_id/items' do
-    before { get "/tasks/#{task_id}/items" }
+    before { get "/tasks/#{task_id}/items", params: {}, headers: headers }
 
     context 'quando a tarefa existe' do
       it 'returns status code 200' do
@@ -36,7 +38,7 @@ RSpec.describe "Items API", type: :request do
 
   # Conjunto de teste para GET /tasks/:task_id/items/:id
   describe 'GET /tasks/:task_id/items/:id' do
-    before { get "/tasks/#{task_id}/items/#{id}" }
+    before { get "/tasks/#{task_id}/items/#{id}", params: {}, headers: headers }
 
     context 'quando a tarefa existe' do
       it 'returns status code 200' do
@@ -61,12 +63,14 @@ RSpec.describe "Items API", type: :request do
     end
   end
 
-  # Conjunto de teste para PUT /tasks/:task_id/items
+  # Conjunto de teste para POST /tasks/:task_id/items
   describe 'POST /tasks/:task_id/items' do
-    let(:valid_attributes) { { name: 'Visitar Narnia', done: false } }
+    let(:valid_attributes) { { name: 'Visit Narnia', done: false }.to_json }
 
     context 'quando os atributos do pedido são válidos' do
-      before { post "/tasks/#{task_id}/items", params: valid_attributes }
+      before do
+        post "/tasks/#{task_id}/items", params: valid_attributes, headers: headers
+      end
 
       it 'returns status code 201' do
         expect(response).to have_http_status(201)
@@ -74,7 +78,7 @@ RSpec.describe "Items API", type: :request do
     end
 
     context 'quando um pedido inválido' do
-      before { post "/tasks/#{task_id}/items", params: {} }
+      before { post "/tasks/#{task_id}/items", params: {}, headers: headers }
 
       it 'returns status code 422' do
         expect(response).to have_http_status(422)
@@ -88,9 +92,11 @@ RSpec.describe "Items API", type: :request do
 
   # Conjunto de teste para PUT /tasks/:task_id/items/:id
   describe 'PUT /tasks/:task_id/items/:id' do
-    let(:valid_attributes) { { name: 'Mozart' } }
+    let(:valid_attributes) { { name: 'Mozart' }.to_json }
 
-    before { put "/tasks/#{task_id}/items/#{id}", params: valid_attributes }
+    before do
+      put "/tasks/#{task_id}/items/#{id}", params: valid_attributes, headers: headers
+    end
 
     context 'quando o item existe' do
       it 'returns status code 204' do
@@ -118,7 +124,7 @@ RSpec.describe "Items API", type: :request do
 
   # Conjunto de teste para DELETE /tasks/:id
   describe 'DELETE /tasks/:id' do
-    before { delete "/tasks/#{task_id}/items/#{id}" }
+    before { delete "/tasks/#{task_id}/items/#{id}", params: {}, headers: headers }
 
     it 'returns status code 204' do
       expect(response).to have_http_status(204)
