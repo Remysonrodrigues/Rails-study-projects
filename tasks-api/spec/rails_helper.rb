@@ -33,11 +33,12 @@ RSpec.configure do |config|
   # examples within a transaction, remove the following line or assign false
   # instead of true.
   config.use_transactional_fixtures = true
-
   # add `FactoryBot` methods
   config.include FactoryBot::Syntax::Methods  
   # add configuração JSON
-  config.include RequestSpecHelper, type: :request
+  # previously `config.include RequestSpecHelper, type: :request`
+  config.include RequestSpecHelper
+  config.include ControllerSpecHelper
 
   # comece truncando todas as tabelas, mas depois use a estratégia de transação mais rápida no resto do tempo.
   config.before(:suite) do
