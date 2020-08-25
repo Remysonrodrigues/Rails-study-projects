@@ -5,8 +5,8 @@ module V1
     # GET /tasks
     def index
       # obter usuário atual tasks
-      @todos = current_user.tasks
-      json_response(@todos)
+      @tasks = current_user.tasks.paginate(page: params[:page], per_page: 20)
+      json_response(@tasks)
     end
 
     # POST /tasks
