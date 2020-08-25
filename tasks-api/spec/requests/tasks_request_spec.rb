@@ -59,7 +59,7 @@ RSpec.describe "Tasks API", type: :request do
     # validar atributos
     let(:valid_attributes) do
       # send json payload
-      { title: 'Learn Elm', created_by: user.id.to_s }.to_json
+      { title: 'Ruby on rails', created_by: user.id.to_s }.to_json
     end
 
     context 'quando o pedido é válido' do
