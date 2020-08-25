@@ -3,13 +3,15 @@ class TasksController < ApplicationController
 
   # GET /tasks
   def index
-    @todos = Task.all
+    # obter usuário atual tasks
+    @todos = current_user.tasks
     json_response(@todos)
   end
 
   # POST /tasks
   def create
-    @task = Task.create!(task_params)
+    # criar tasks pertencentes ao usuário atual
+    @task = current_user.tasks.create!(task_params)
     json_response(@task, :created)
   end
 
@@ -31,6 +33,11 @@ class TasksController < ApplicationController
   end
 
   private
+
+    # remover `created_by` da lista de parâmetros permitidos
+    def task_params
+      params.permit(:title)
+    end
 
     def task_params
       # parâmetros da lista
