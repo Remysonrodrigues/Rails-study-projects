@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
-
+# serializadores de modelos ativos 
+gem 'active_model_serializers'
 gem 'jwt'
 # Use ActiveModel has_secure_password
 gem 'bcrypt'
