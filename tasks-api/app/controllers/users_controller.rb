@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  skip_before_action :authorize_request, only: :create
+
   # POST /signup
   # retornar token autenticado após signup
   def create
@@ -18,5 +20,5 @@ class UsersController < ApplicationController
         :password_confirmation
       )
     end
-    
+
 end
