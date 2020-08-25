@@ -2,6 +2,8 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '2.6.6'
+# Otimizar paginação
+gem 'will_paginate'
 # serializadores de modelos ativos 
 gem 'active_model_serializers'
 gem 'jwt'
