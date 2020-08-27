@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'control_users/index'
   resources :addresses
   devise_for :users
   get 'welcome/index'
