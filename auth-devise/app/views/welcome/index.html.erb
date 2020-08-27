@@ -1,5 +1,17 @@
 <h1>Página Principal</h1>
 
+<% if user_signed_in? %>
+  <ul>
+    <li><%= current_user.email %></li>
+    <li><%= link_to "Sair", destroy_user_session_path, method: :delete %></li>
+  </ul>
+<% else %>
+  <ul>
+    <li><%= link_to "Cadastro de novo usuário", new_user_registration_path %></li>
+    <li><%= link_to "Logar", new_user_session_path %></li>
+  </ul>
+<% end %>
+
 <ul>
   <li><%= link_to "Clientes", customers_path %></li>
   <li><%= link_to "Produtos", products_path %></li>
